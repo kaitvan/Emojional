@@ -8,6 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let availableEmotions = ["🥳": "Don't be moody. Shake your booty!", "🙂": "When you focus on the good, the good gets better.", "😞": "I am worthy of the time it takes to do the things that heal my heart."]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,13 +17,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showMessage(sender: UIButton) {
-        let messageControl = UIAlertController(title: "This is a test", message: "If you see this, it works!", preferredStyle: UIAlertController.Style.alert)
+        if let selectedEmotion = sender.titleLabel?.text {
+            
+            let titleText = selectedEmotion
+            
+            let messageText = availableEmotions[selectedEmotion]!
         
-        messageControl.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            let messageControl = UIAlertController(title: "\(titleText)", message: "\(messageText)", preferredStyle: UIAlertController.Style.alert)
         
-        present(messageControl, animated: true, completion: nil)
+            messageControl.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        
+            present(messageControl, animated: true, completion: nil)
+            }
     }
-
 
 }
 
